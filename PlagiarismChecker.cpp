@@ -7,6 +7,9 @@
 
 PlagiarismChecker::PlagiarismChecker() {
 
+    dataset.push_back({ "Doc1", "I love KB" });
+    dataset.push_back({ "Doc2", "Cigs and cool classic combo" });
+    dataset.push_back({ "Doc3", "KB is hell" });
 }
 
 PlagiarismChecker::~PlagiarismChecker() {
@@ -37,5 +40,22 @@ std::vector<std::string> PlagiarismChecker::tokenizeString(const std::string &te
 }
 
 double PlagiarismChecker::computeJaccard(const std::vector<std::string> &tokens1, const std::vector<std::string> &tokens2) const {
-    return 0.0;
+
+    std::set<std::string> set1(tokens1.begin(), tokens1.end());
+    std::set<std::string> set2(tokens2.begin(), tokens2.end());
+    std::vector<std::string> intersection;
+    std::set_intersection(set1.begin(), set1.end(),
+                          set2.begin(), set2.end(),
+                          std::back_inserter(intersection));
+    std::vector<std::string> unionSet;
+    std::set_union(set1.begin(), set1.end(),
+                   set2.begin(), set2.end(),
+                   std::back_inserter(unionSet));
+
+    double similarity = 0.0;
+    if (!unionSet.empty())
+    {
+        similarity = static_cast<double>(intersection.size()) / unionSet.size();
+    }
+    return similarity;
 }
