@@ -9,7 +9,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-    ui(std::make_unique <Ui::MainWindow>),
+    ui(std::make_unique <Ui::MainWindow>()),
     checker(std::make_unique<PlagiarismChecker>())
 {
     ui->setupUi(this);

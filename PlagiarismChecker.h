@@ -17,7 +17,6 @@ private:
     std::vector<std::pair<std::string, std::string>> dataset;
 
     std::vector<std::string> tokenizeString(const std::string &text) const;
-    double computeJaccard(const std::vector<std::string> &tokens1,
-                          const std::vector<std::string> &tokens2) const;
+    double computeJaccard(const std::vector<std::string> &tokens1, const std::vector<std::string> &tokens2) const;
 };
 #endif // PLAGIARISMCHECKER_H
