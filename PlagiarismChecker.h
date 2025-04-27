@@ -5,8 +5,7 @@
 #include <string>
 #include <utility>
 
-class PlagiarismChecker
-{
+class PlagiarismChecker {
 public:
     PlagiarismChecker();
     ~PlagiarismChecker();
