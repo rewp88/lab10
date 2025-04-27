@@ -15,8 +15,17 @@ PlagiarismChecker::PlagiarismChecker() {
 PlagiarismChecker::~PlagiarismChecker() {
 }
 
-std::vector<std::pair<std::string, double>> PlagiarismChecker::checkPlagiarism(const std::string &inputText) const {
-    return {};
+std::vector<std::pair<std::string, double>> PlagiarismChecker::checkPlagiarism(const std::string &inputText) const
+{
+    std::vector<std::pair<std::string, double>> results;
+    auto inputTokens = tokenizeString(inputText);
+    for (const auto &doc : dataset)
+    {
+        auto docTokens = tokenizeString(doc.second);
+        double similarity = computeJaccard(inputTokens, docTokens);
+        results.push_back({ doc.first, similarity });
+    }
+    return results;
 }
 
 std::vector<std::string> PlagiarismChecker::tokenizeString(const std::string &text) const {
